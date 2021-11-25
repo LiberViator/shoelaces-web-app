@@ -3,9 +3,9 @@ const catalogue = document.querySelector(".catalogue");
 const url = "./models.json";
 
 async function fetchJSON() {
-   const response = await fetch(url);
-   const data = await response.json();
-   return data;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
 }
 
 fetchJSON().then(data => {

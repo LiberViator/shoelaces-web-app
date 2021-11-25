@@ -1,4 +1,3 @@
-
 // Canvas
 const canvas = document.querySelector(".tutorial__canvas");
 

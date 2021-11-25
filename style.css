@@ -66,10 +66,10 @@ html {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  overflow-y: scroll;
   background: var(--clr-grey);
   color: var(--clr-black);
   font-family: 'Quicksand', sans-serif;
-  overflow-y: scroll;
 }
 
 body {
@@ -80,7 +80,9 @@ body {
 }
 
 .header {
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
+  z-index: 10;
   position: sticky;
   top: 0;
   flex-shrink: 0;
@@ -89,9 +91,7 @@ body {
   width: 100%;
   height: 56px;
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   background: var(--clr-translucent-grey);
-  z-index: 10;
 }
 
 .catalogue {
@@ -100,53 +100,53 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
   width: 100%;
-  padding: 16px;
   margin: 0 0 auto 0;
+  padding: 16px;
 }
 
 .catalogue__card {
-  cursor: pointer;
   position: relative;
-  overflow: hidden;
-  border-radius: var(--border-radius);
   width: 100%;
   padding-top: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius);
   background-color: var(--clr-white);
   background-image: url("");
-  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }
 
 .catalogue__card__rating {
-  top: 0;
-  right: 0;
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   position: absolute;
+  top: 0;
+  right: 0;
   align-items: center;
   justify-content: center;
-  padding: 4px;
   margin: 4px 4px 0 0;
-  background: var(--clr-translucent-grey);
+  padding: 4px;
   border-radius: 100%;
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--clr-translucent-grey);
 }
 
 .catalogue__card__rating__icon {
-  height: 24px;
   width: 24px;
+  height: 24px;
 }
 
 .catalogue__card__title {
   display: flex;
   position: absolute;
-  justify-content: flex-end;
   bottom: 0;
+  justify-content: flex-end;
   width: 100%;
-  background: var(--clr-accent);
   padding: 12px 16px;
   border-radius: 0 0 16px 16px;
+  background: var(--clr-accent);
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -163,28 +163,28 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  background: var(--clr-white);
   overflow-y: hidden;
+  background: var(--clr-white);
 }
 
 .tutorial__menu {
   display: grid;
+  z-index: 1;
   grid-template-columns: 1fr 2fr 1fr;
+  flex-grow: 0;
   width: 100%;
   padding: 16px 16px 0 16px;
-  flex-grow: 0;
-  z-index: 1;
 }
 
 .tutorial__menu__rating {
-  height: 24px;
   display: inline-flex;
   flex-direction: row;
+  height: 24px;
 }
 
 .tutorial__menu__rating__icon {
-  height: 24px;
   width: 24px;
+  height: 24px;
   margin: 0 4px 0 0;
   filter: invert(31%) sepia(14%) saturate(1633%) hue-rotate(210deg) brightness(105%) contrast(87%);
 }
@@ -200,61 +200,61 @@ body {
 }
 
 .tutorial__menu__info__title {
-  text-align: center;
   margin: 0 0 4px 0;
+  text-align: center;
 }
 
 .tutorial__menu__info__steps {
-  text-align: center;
   color: var(--clr-dark_grey);
+  text-align: center;
 }
 
 .tutorial__menu__sound-icon {
   justify-self: flex-end;
-  height: 24px;
   width: 24px;
+  height: 24px;
 }
 
 .tutorial__canvas {
   display: block;
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 .tutorial__nav {
   display: flex;
-  flex-direction: row;
-  padding: 0 16px 16px 16px;
-  justify-content: center;
   z-index: 1;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 16px 16px 16px;
 }
 
 .tutorial__nav__back {
-  cursor: pointer;
-  height: 44px;
-  width: 44px;
   flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   margin: 0 16px 0 0;
+  padding: 10px;
   border-radius: 100%;
   background-color: var(--clr-grey);
-  padding: 10px;
+  cursor: pointer;
 }
 
 .tutorial__nav__back__icon {
-  height: 24px;
   width: 24px;
+  height: 24px;
 }
 
 .tutorial__nav__next {
-  cursor: pointer;
   display: flex;
-  color: var(--clr-white);
-  height: 44px;
   width: 100%;
+  height: 44px;
+  padding: 10px 12px 10px 36px;
   border-radius: 22px;
   background-color: var(--clr-accent);
-  padding: 10px 12px 10px 36px;
+  color: var(--clr-white);
+  cursor: pointer;
 }
 
 .tutorial__nav__next__title {
@@ -263,14 +263,37 @@ body {
 }
 
 .tutorial__nav__next__icon {
-  height: 24px;
   width: 24px;
+  height: 24px;
   float: right;
 }
 
-.footer {
-  bottom: 0;
+.animation {
   display: flex;
+  z-index: 10;
+  position: absolute;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px);
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  background: var(--clr-accent);
+  opacity: 0;
+}
+
+.animation__text {
+  color: var(--clr-white);
+}
+
+.running {
+  animation: example 0.3s ease-out 0s 1 forwards;
+}
+
+.footer {
+  display: flex;
+  bottom: 0;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -280,4 +303,22 @@ body {
 
 .footer__credits {
   color: var(--clr-dark_grey);
+}
+
+@keyframes example {
+  0% {
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    opacity: 0;
+  }
+
+  100% {
+    top: calc(50% - 50%);
+    left: calc(50% - 50%);
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0%;
+    opacity: 1;
+  }
 }
