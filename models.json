@@ -1,25 +1,49 @@
 [{
     "name": "Ladder",
     "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
-    "rating": 0,
+    "level": "easy",
     "steps": [1, 2, 3]
   },
   {
     "name": "Zipper",
     "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
-    "rating": 0,
+    "level": "medium",
     "steps": [1, 2, 3, 4, 5]
   },
   {
     "name": "Double back",
     "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
-    "rating": 0,
+    "level": "easy",
     "steps": [1, 2, 3]
   },
   {
     "name": "Loop back",
     "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
-    "rating": 0,
+    "level": "hard",
+    "steps": [1, 2, 3, 4, 5, 6, 7]
+  },
+  {
+    "name": "Bushwalk",
+    "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
+    "level": "easy",
+    "steps": [1, 2, 3, 4, 5, 6, 7]
+  },
+  {
+    "name": "Sawtooth",
+    "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
+    "level": "medium",
+    "steps": [1, 2, 3, 4, 5, 6, 7]
+  },
+  {
+    "name": "Footbag",
+    "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
+    "level": "hard",
+    "steps": [1, 2, 3, 4, 5, 6, 7]
+  },
+  {
+    "name": "Display",
+    "background": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1925&q=80",
+    "level": "easy",
     "steps": [1, 2, 3, 4, 5, 6, 7]
   }
 ]
