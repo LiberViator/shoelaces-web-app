@@ -35,6 +35,7 @@ img {
   --clr-translucent-dark_grey: hsla(0, 0%, 64%, 0.64);
   --blur: 32px;
   --border-radius: 16px;
+  --app-height: 100%;
 }
 
 h1 {
@@ -66,13 +67,7 @@ h3 {
 html {
   -webkit-font-smoothing: antialiased;
   width: 100vw;
-  width: -moz-available;
-  width: -webkit-fill-available;
-  width: fill-available;
-  height: 100vh;
-  height: -moz-available;
-  height: -webkit-fill-available;
-  height: fill-available;
+  height: var(--app-height);
   overflow-x: hidden;
   overflow-y: scroll;
   background: var(--clr-light_grey);
@@ -83,15 +78,8 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  width: -moz-available;
-  width: -webkit-fill-available;
-  width: fill-available;
-  height: 100vh;
-  height: -moz-available;
-  height: -webkit-fill-available;
-  height: fill-available;
-  height: -webkit-fill-available;
+  width: 100%;
+  height: var(--app-height);
 }
 
 .header {
@@ -177,13 +165,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  width: -moz-available;
-  width: -webkit-fill-available;
-  width: fill-available;
   height: 100%;
-  height: -moz-available;
-  height: -webkit-fill-available;
-  height: fill-available;
   overflow-y: hidden;
   background: var(--clr-white);
 }

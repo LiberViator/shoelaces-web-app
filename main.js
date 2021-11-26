@@ -1,3 +1,10 @@
+const appHeight = () => {
+    document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+window.addEventListener('resize', appHeight)
+appHeight()
+
+
 const catalogue = document.querySelector(".catalogue");
 
 const url = "./models.json";
