@@ -65,9 +65,14 @@ h3 {
 
 html {
   -webkit-font-smoothing: antialiased;
-  min-width: 100vw;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  width: 100vw;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+  height: 100vh;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
   overflow-x: hidden;
   overflow-y: scroll;
   background: var(--clr-light_grey);
@@ -79,7 +84,13 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
   height: 100vh;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
   height: -webkit-fill-available;
 }
 
@@ -166,7 +177,13 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
   height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
   overflow-y: hidden;
   background: var(--clr-white);
 }
