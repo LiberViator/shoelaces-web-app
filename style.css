@@ -35,7 +35,6 @@ img {
   --clr-translucent-dark_grey: hsla(0, 0%, 64%, 0.64);
   --blur: 32px;
   --border-radius: 16px;
-  --app-height: 100%;
 }
 
 h1 {
@@ -66,8 +65,8 @@ h3 {
 
 html {
   -webkit-font-smoothing: antialiased;
-  width: 100vw;
-  height: var(--app-height);
+  width: 100%;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   background: var(--clr-light_grey);
@@ -79,7 +78,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: var(--app-height);
+  height: 100%;
+  flex-grow: 1;
 }
 
 .header {
@@ -166,6 +166,7 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 100%;
+  flex-grow: 1;
   overflow-y: hidden;
   background: var(--clr-white);
 }
