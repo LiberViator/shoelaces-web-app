@@ -20,12 +20,9 @@ async function fetchJSON() {
 
 fetchJSON().then(data => {
   document.title = data[id].name;
-
-  for (let card = 0; card <= id; card++) {
-    tutorialLevelIcon.src = "img/" + data[id].level + ".svg";
-    tutorialTitle.innerHTML = data[id].name;
-    tutorialSteps.innerHTML = step + " / " + data[id].steps.length;
-  }
+  tutorialLevelIcon.src = "img/" + data[id].level + ".svg";
+  tutorialTitle.innerHTML = data[id].name;
+  tutorialSteps.innerHTML = step + " / " + data[id].steps.length;
 
   backButton.onclick = function() {
     if (step > 1) {
@@ -34,17 +31,16 @@ fetchJSON().then(data => {
       nextButtonText.innerHTML = "Next step";
     } else {
       // Back to catalogue
+      animation.style.willChange = "auto";
       window.location.href = "./index.html";
     }
   };
 
   nextButton.onclick = function() {
     if (step < data[id].steps.length) {
-
       step++;
       tutorialSteps.innerHTML = step + " / " + data[id].steps.length;
     } else {
-      // Play animation and back to catalogue
       animation.classList.add("running")
       setTimeout(function playAnimation() {
         window.location.href = "./index.html";
@@ -52,6 +48,7 @@ fetchJSON().then(data => {
     }
     if (step === data[id].steps.length) {
       nextButtonText.innerHTML = "Finish";
+      animation.style.willChange = "opacity";
     }
   };
 });
