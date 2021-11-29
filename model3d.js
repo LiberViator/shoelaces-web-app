@@ -9,7 +9,7 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
   antialias: true
 });
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(window.devicePixelRatio / 1.4);
 renderer.setClearColor(0xFFFFFF);
 renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
@@ -27,7 +27,7 @@ scene.add(light);
 //Sizes
 window.onresize = function() {
   renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(window.devicePixelRatio / 1.4);
   camera.aspect = canvas.clientWidth / canvas.clientHeight;
   camera.updateProjectionMatrix();
   renderer.render(scene, camera);
