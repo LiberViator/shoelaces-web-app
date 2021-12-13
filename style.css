@@ -219,9 +219,6 @@ body {
 .tutorial__canvas {
   display: block;
   position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
   top: 48px;
   width: 100%;
   height: calc(100% - 48px);
