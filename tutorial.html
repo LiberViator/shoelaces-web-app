@@ -13,7 +13,7 @@
 <body>
 
   <!-- Header -->
-  <header class="header">
+  <header class="header header-minimized">
     <h2 class="header__logo">domain.name</h2>
   </header>
 
@@ -34,22 +34,25 @@
 
     <div class="tutorial__nav">
       <a class="tutorial__nav__back" type="button">
-        <img src="img/back.svg" alt="" class="tutorial__nav__back__icon">
+        <img src="img/cancel.svg" alt="" class="tutorial__nav__back__icon">
       </a>
       <a class="tutorial__nav__next" type="button">
-        <h3 class="tutorial__nav__next__text">Next step</h3>
+        <h3 class="tutorial__nav__next__text">Start tying</h3>
         <img src="img/next.svg" alt="" class="tutorial__nav__next__icon">
       </a>
     </div>
   </div>
-  <div class="animation">
-    <h1 class="animation__text">Done!</h1>
+  <div class="loading-animation">
+    <h1 class="loading-animation__text">Loading</h1>
+  </div>
+  <div class="finish-animation">
+    <h1 class="finish-animation__text">Done!</h1>
   </div>
 
   <!-- Scripts -->
-  <script type="text/javascript" src="tutorial.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script type="text/javascript" src="model3d.js"></script>
-
+  <script src="https://unpkg.com/three@0.135.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.135.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://unpkg.com/three@0.135.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/three.meshline/1.3.0/THREE.MeshLine.js"></script> -->
+  <script type="module" src="./js/model3d.js"></script>
 </body>
