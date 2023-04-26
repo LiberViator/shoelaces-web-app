@@ -11,8 +11,9 @@ async function fetchJSON() {
 fetchJSON().then(data => {
   for (let card = 0; card < data.length; card++) {
 
-    const newCard = document.createElement("a");
+    const newCard = document.createElement("button");
     newCard.classList.add("catalogue__card");
+    newCard.type = "button";
     newCard.style.backgroundImage = "url(\"" + data[card].background + "\")";
     catalogue.appendChild(newCard);
 
@@ -26,6 +27,7 @@ fetchJSON().then(data => {
 
     const newCardLevelIcon = document.createElement("img");
     newCardLevelIcon.classList.add("catalogue__card__level__icon");
+    newCardLevelIcon.alt = "";
     newCardLevelIcon.src = "img/" + data[card].level + ".svg";
     newCardLevel.appendChild(newCardLevelIcon);
 

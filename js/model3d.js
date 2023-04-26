@@ -1,3 +1,4 @@
+const logo = document.querySelector(".header__logo");
 const tutorialLevelIcon = document.querySelector(".tutorial__menu__level__icon");
 const tutorialTitle = document.querySelector(".tutorial__menu__info__title");
 const tutorialSteps = document.querySelector(".tutorial__menu__info__steps");
@@ -9,15 +10,14 @@ const nextStepButtonText = document.querySelector(".tutorial__nav__next__text");
 const loadingAnimation = document.querySelector(".loading-animation");
 const finishAnimation = document.querySelector(".finish-animation");
 
-const id = location.search.substring(0)
-  .replace("?id=", "");
+const id = location.search.substring(0).replace("?id=", "");
 const url = "./models.json";
 var currentFrame = 0;
 
-var canvas, scene, camera, light, clock, renderer, controls, shoeMesh, shoelacesMesh, mixer, jsonData, leftShoelaceMesh, rightShoelaceMesh;
+var manager, canvas, scene, camera, light, clock, renderer, controls, shoeMesh, shoelacesMesh, mixer, jsonData, leftShoelaceMesh, rightShoelaceMesh;
 
 // Load manager
-const manager = new THREE.LoadingManager();
+manager = new THREE.LoadingManager();
 
 // Canvas
 canvas = document.querySelector(".tutorial__canvas");
@@ -25,19 +25,18 @@ canvas = document.querySelector(".tutorial__canvas");
 // Scene
 scene = new THREE.Scene();
 
-scene.position.set(0, 0, 0);
-scene.rotation.set(0, -0.3, 0);
+scene.position.set(0, 0.8, 0);
+scene.rotation.set(0, 0, 0);
 
 // Camera
 camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 10000);
 
-camera.position.set(-0.2, 6, 5);
-camera.rotation.set(-0.8, 0, 0);
+camera.position.set(1, 5, 4);
 
 // Light
 light = new THREE.PointLight(0xffffff, 1);
 
-light.position.set(10, 0, 25);
+light.position.set(10, 10, 20);
 light.rotation.set(0, 0, 0);
 scene.add(light);
 
@@ -55,7 +54,16 @@ renderer.setClearColor(0xFFFFFF);
 renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
 // Constrols
-// controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+controls.enableZoom = false;
+controls.enablePan = false;
+controls.minPolarAngle = 0.4;
+controls.maxPolarAngle = 2;
+controls.minAzimuthAngle = -1.2;
+controls.maxAzimuthAngle = 1.2;
+controls.dampingFactor = 0.07;
+controls.rotateSpeed = 0.6;
 
 // Fetching JSON
 fetch(url)
@@ -75,25 +83,25 @@ fetch(url)
     }
     setUpPage();
 
-  });
+  })
 
 // Importing 3D model mesh
 const loadShoe = new THREE.GLTFLoader(manager);
 
-loadShoe.load("./converseShoe.gltf", (gltf) => {
+loadShoe.load("./1.gltf", (gltf) => {
   scene.add(gltf.scene);
 
   shoeMesh = gltf;
 
-  gltf.scene.scale.set(1, 1, 1);
-  gltf.scene.position.set(0, 0, 0);
-  gltf.scene.rotation.set(0, 0, 0);
+  shoeMesh.scene.scale.set(1, 1, 1);
+  shoeMesh.scene.position.set(0, -1, 0);
+  shoeMesh.scene.rotation.set(0, 0, 0);
 });
 
 const loadShoelaces = new THREE.GLTFLoader(manager);
 
 loadShoelaces.load("./converseShoe.gltf", (gltf) => {
-  // scene.add(gltf.scene);
+  scene.add(gltf.scene);
 
   shoelacesMesh = gltf;
 
@@ -101,10 +109,11 @@ loadShoelaces.load("./converseShoe.gltf", (gltf) => {
   mixer = new THREE.AnimationMixer(shoelacesMesh.scene);
 
   mixer.clipAction(shoelacesMesh.animations[0]).play();
+  console.log(shoelacesMesh.animations);
 
-  gltf.scene.scale.set(1, 1, 1);
-  gltf.scene.position.set(0, 0, 0);
-  gltf.scene.rotation.set(0, 0, 0);
+  shoelacesMesh.scene.scale.set(1, 1, 1);
+  shoelacesMesh.scene.position.set(0, 0, 0);
+  shoelacesMesh.scene.rotation.set(0, 0, 0);
 });
 
 // Next step button
@@ -115,7 +124,7 @@ function nextAnim() {
     nextStepButtonIcon.style.visibility = "visible";
     nextStepButtonText.innerHTML = "Next step";
     tutorialSteps.innerHTML = currentFrame + " / " + shoeMesh.animations.length + " Steps";
-  } else if (currentFrame == shoeMesh.animations.length){
+  } else if (currentFrame == shoeMesh.animations.length) {
     finishAnimation.classList.add("running")
     setTimeout(() => {
       window.location.href = "./index.html";
@@ -129,7 +138,7 @@ function nextAnim() {
   if (currentFrame > 1) {
     prevStepButtonIcon.src = "./img/back.svg";
   }
-};
+}
 
 // Previous step button
 function prevAnim() {
@@ -137,17 +146,17 @@ function prevAnim() {
   if (currentFrame > 1) {
     currentFrame--;
     nextStepButtonIcon.style.visibility = "visible";
+    nextStepButtonText.innerHTML = "Next step";
     tutorialSteps.innerHTML = currentFrame + " / " + shoeMesh.animations.length + " Steps";
     mixer.clipAction(shoeMesh.animations[currentFrame]).play();
-    nextStepButtonText.innerHTML = "Next step";
   } else {
     finishAnimation.style.willChange = "auto";
     window.location.href = "./index.html";
-  }
+  };
   if (currentFrame == 1) {
     prevStepButtonIcon.src = "./img/cancel.svg";
-  }
-};
+  };
+}
 
 // Optimazing animations
 function render() {
@@ -159,13 +168,17 @@ function render() {
   var delta = clock.getDelta();
   if (mixer) mixer.update(delta);
   requestAnimationFrame(render);
-};
+}
 render();
 
 // Loading screen
 manager.onLoad = (() => {
   loadingAnimation.style.display = "none";
 });
+
+function logoLink() {
+  window.location.href = "./index.html";
+}
 
 // Update sizes
 function updateSizes() {
@@ -174,7 +187,7 @@ function updateSizes() {
   camera.aspect = canvas.clientWidth / canvas.clientHeight;
   camera.updateProjectionMatrix();
   renderer.render(scene, camera);
-};
+}
 
 [
   // const coordinates = [{
@@ -277,7 +290,7 @@ function updateSizes() {
   //   var leftPathCurve = new THREE.CatmullRomCurve3(leftPath, false, "centripetal", 0.5);
   //   var rightPathCurve = new THREE.CatmullRomCurve3(rightPath, false, "centripetal", 0.5);
   //
-  //   const leftCurvePoints = leftPathCurve.getPoints(60); //How many points on the path
+  //   const leftCurvePoints = leftPathCurve.getPoints(100); //How many points on the path
   //   const rightCurvePoints = rightPathCurve.getPoints(60); //How many points on the path
   //
   //   const leftShoelaceGeometry = new THREE.BufferGeometry().setFromPoints(leftCurvePoints);
@@ -294,40 +307,46 @@ function updateSizes() {
   //
   //   var drawRange = 60;
   //
-  //   leftShoelaceGeometry.setDrawRange(0, 60);
+  //   // leftShoelaceGeometry.setDrawRange(0, 60);
   //
+  //   var pointsEndGeom = new THREE.BoxGeometry(.1, .1, .1);
   //
-  //   var pointsEndGeom = new THREE.SphereGeometry(0.04, 20, 20);
-  //
-  //   var shapeEnd = new THREE.Mesh(pointsEndGeom, new THREE.MeshBasicMaterial({color: "red"}));
+  //   var shapeEnd = new THREE.Mesh(pointsEndGeom, new THREE.MeshBasicMaterial({
+  //     color: "red"
+  //   }));
   //   scene.add(shapeEnd);
   //
-  //   var point = leftPathCurve.getPoint(1);
+  //   var quaternion = new THREE.Quaternion();
+  //   var matrix = new THREE.Matrix4();
+  //   var euler = new THREE.Euler();
   //
-  //   shapeEnd.position.x = point.x;
-  //   shapeEnd.position.y = point.y;
-  //   shapeEnd.position.z = point.z;
+  //   slider.oninput = function() {
+  //     const value = parseFloat(this.value);
+  //     const maxValue = parseFloat(this.max);
+  //     leftShoelaceGeometry.setDrawRange(0, value);
+  //
+  //     let point = leftPathCurve.getPoint(value / 100);
+  //
+  //     shapeEnd.position.x = point.x;
+  //     shapeEnd.position.y = point.y;
+  //     shapeEnd.position.z = point.z;
+  //   }
   // }
   // createShoelaces();
 ]
 
 // Animations
 function playAnim() {
-  if (shoeMesh == undefined) {
+  if (shoelacesMesh == undefined) {
     setTimeout(playAnim, 50);
     return;
-  };
-  // shoeMesh.animations.forEach((clip) => {
-  //   mixer.clipAction(clip).play();
-  // });
-  var zoom = .6;
-  for (zoom; zoom < 1; zoom += .1) {
-    // scene.scale.set(zoom, zoom, zoom);
   }
+  shoelacesMesh.animations.forEach((clip) => {
+    mixer.clipAction(clip).play();
+  });
   requestAnimationFrame(playAnim);
-};
-playAnim();
-
+}
+// playAnim();
 
 // Event listeners
 nextStepButton.addEventListener("click", nextAnim);
@@ -340,3 +359,4 @@ document.addEventListener("keydown", () => {
   }
 });
 window.addEventListener("resize", updateSizes);
+logo.addEventListener("click", logoLink);
